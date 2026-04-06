@@ -16,9 +16,10 @@ public class TestManager : MonoBehaviour
     [Header("CVD Filter")]
     public GameObject CVDFilter;
 
-    [Header("Scene Indices")]
-    public int start = 0; // Set this to the appropriate scene index for your start scene.
-    public int game  = 1; // Set this to the appropriate scene index for your test scene.
+    [Header("Scene Indices")] // Set this to the appropriate scene index for your start scene.
+    public int start     = 0; 
+    public int game_CVND = 1;
+    public int game_CVD  = 2;
 
     // Set the test mode based on the specified version (A, B, C, or D).
     public void SetTestMode(string version)
@@ -77,7 +78,26 @@ public class TestManager : MonoBehaviour
         PlayerPrefs.SetString("Version", version);
         // PlayerPrefs.Save();
         Debug.Log("Version saved.");
-        SceneManager.LoadScene(game);
+        switch (version)
+        {
+            case "A":
+            case "B":
+            {
+                SceneManager.LoadScene(game_CVND);
+                break;
+            }
+            case "C":
+            case "D":
+            {
+                SceneManager.LoadScene(game_CVD);
+                break;
+            }
+            default:
+            {
+                Debug.LogError("Invalid test version specified.");
+                break;
+            }
+        }
     }
 
     public void LoadVersionFromMemory()
@@ -108,16 +128,16 @@ public class TestManager : MonoBehaviour
         else
             Destroy(this);
 
-        if (SceneManager.GetActiveScene().buildIndex == game)
+        if (SceneManager.GetActiveScene().buildIndex == start)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
         {
             LoadVersionFromMemory();
             Cursor.lockState = CursorLockMode.Locked;
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-
+        
         //Debug.Log("Current Scene Build Index: " + SceneManager.GetActiveScene().buildIndex + ", Scene Name: " + SceneManager.GetActiveScene().name);
     }
 

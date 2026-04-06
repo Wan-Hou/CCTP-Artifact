@@ -8958,7 +8958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504684766504316, guid: cbc9cc4306c5e354696618b95ff4388d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4750939742532146, guid: cbc9cc4306c5e354696618b95ff4388d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9012,6 +9012,10 @@ PrefabInstance:
       propertyPath: m_IsGlobal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3925544536286692946, guid: cbc9cc4306c5e354696618b95ff4388d, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: f5516546680882942b5e386f9a491666, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19162,7 +19166,8 @@ MonoBehaviour:
   versionText: {fileID: 2027752862}
   CVDFilter: {fileID: 1631580095}
   start: 0
-  game: 1
+  game_CVND: 1
+  game_CVD: 2
 --- !u!4 &2033947110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 618707019244549489, guid: c0b5650a22b48d14b9e4394f40243265, type: 3}
