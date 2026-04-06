@@ -5,7 +5,7 @@ public class ObjectCarry : MonoBehaviour
     [Header("Settings")]
     public float rayDistance = 5f;
     public float carryDistanceMultiplier = 0.9f;
-    public Vector3 carryOffset = new Vector3(0f, -0.3f, 0f);
+    public Vector3 carryOffset = new(0f, -0.3f, 0f);
 
     [Header("State")]
     public bool isCarryingObj = false;
@@ -21,10 +21,9 @@ public class ObjectCarry : MonoBehaviour
 
     void TryPickUp()
     {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        RaycastHit hit;
+        Ray ray = new(cam.transform.position, cam.transform.forward);
 
-        if (Physics.Raycast(ray, out hit, rayDistance))
+        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
             if (hit.collider.CompareTag("Interactable"))
             {
@@ -40,7 +39,7 @@ public class ObjectCarry : MonoBehaviour
                 //    cam.transform.forward * dist + carryOffset;'
 
                 carriedObject.transform.parent = carriedObjectPosition.transform;
-                carriedObject.transform.localPosition = carriedObjectPosition.transform.localPosition;
+                carriedObject.transform.localPosition = Vector3.zero;
 
                 // Physics changes
                 carriedRb.useGravity = false;
@@ -63,7 +62,7 @@ public class ObjectCarry : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         if (carriedObject == null) return;
 
@@ -82,8 +81,7 @@ public class ObjectCarry : MonoBehaviour
     // ============================
     void OnDrawGizmos()
     {
-        Camera gizmoCam = GetComponent<Camera>();
-        if (gizmoCam == null) return;
+        if (!TryGetComponent<Camera>(out var gizmoCam)) return;
 
         Gizmos.color = gizmoColor;
 

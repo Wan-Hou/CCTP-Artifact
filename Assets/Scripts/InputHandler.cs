@@ -11,6 +11,8 @@ public class InputHandler : MonoBehaviour
     public ActiveDevices active_device = ActiveDevices.gamepad;
     [HideInInspector]
     public GamepadType gamepad_type = GamepadType.xbox;
+    [HideInInspector]
+    public bool analogMovement = false;
 
     // Enums
     #region
@@ -52,6 +54,9 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string player_previous = "Previous";
     [SerializeField] private string player_next = "Next";
     [SerializeField] private string player_sprint = "Sprint";
+    [SerializeField] private string player_scrollwheel = "ScrollWheel";
+    [SerializeField] private string player_decrease = "Decrease";
+    [SerializeField] private string player_increase = "Increase";
     #endregion
 
     [Header("UI")]
@@ -59,6 +64,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string ui_navigate = "Navigate";
     [SerializeField] private string ui_submit = "Submit";
     [SerializeField] private string ui_cancel = "Cancel";
+    [SerializeField] private string ui_exit = "Exit";
     [SerializeField] private string ui_point = "Point";
     [SerializeField] private string ui_click = "Click";
     [SerializeField] private string ui_rightclick = "RightClick";
@@ -80,11 +86,15 @@ public class InputHandler : MonoBehaviour
     private InputAction player_previous_action;
     private InputAction player_next_action;
     private InputAction player_sprint_action;
+    private InputAction player_scrollwheel_action;
+    private InputAction player_decrease_action;
+    private InputAction player_increase_action;
 
     private InputActionMap ui_map;
     private InputAction ui_navigate_action;
     private InputAction ui_submit_action;
     private InputAction ui_cancel_action;
+    private InputAction ui_exit_action;
     private InputAction ui_point_action;
     private InputAction ui_click_action;
     private InputAction ui_rightclick_action;
@@ -105,10 +115,14 @@ public class InputHandler : MonoBehaviour
     public bool player_previous_triggered { get; private set; }
     public bool player_next_triggered { get; private set; }
     public bool player_sprint_triggered { get; private set; }
+    public Vector2 player_scrollwheel_input { get; private set; }
+    public bool player_decrease_triggered { get; private set; }
+    public bool player_increase_triggered { get; private set; }
 
     public Vector2 ui_navigation_input { get; private set; }
     public bool ui_submit_triggered { get; private set; }
     public bool ui_cancel_triggered { get; private set; }
+    public bool ui_exit_triggered { get; private set; }
     public Vector2 ui_point_input { get; private set; }
     public bool ui_click_triggered { get; private set; }
     public bool ui_right_click_triggered { get; private set; }
@@ -137,6 +151,9 @@ public class InputHandler : MonoBehaviour
         player_previous_action = inputsystem_actions.FindActionMap(player).FindAction(player_previous);
         player_next_action = inputsystem_actions.FindActionMap(player).FindAction(player_next);
         player_sprint_action = inputsystem_actions.FindActionMap(player).FindAction(player_sprint);
+        player_scrollwheel_action = inputsystem_actions.FindActionMap(player).FindAction(player_scrollwheel);
+        player_decrease_action = inputsystem_actions.FindActionMap(player).FindAction(player_decrease);
+        player_increase_action = inputsystem_actions.FindActionMap(player).FindAction(player_increase);
         #endregion
 
         // ui actions
@@ -145,6 +162,7 @@ public class InputHandler : MonoBehaviour
         ui_navigate_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_navigate);
         ui_submit_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_submit);
         ui_cancel_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_cancel);
+        ui_exit_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_exit);
         ui_point_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_point);
         ui_click_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_click);
         ui_rightclick_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_rightclick);
@@ -188,6 +206,15 @@ public class InputHandler : MonoBehaviour
         player_sprint_action.performed += context => player_sprint_triggered = true;
         player_sprint_action.canceled += context => player_sprint_triggered = false;
 
+        player_scrollwheel_action.performed += context => player_scrollwheel_input = context.ReadValue<Vector2>();
+        player_scrollwheel_action.canceled += context => player_scrollwheel_input = Vector2.zero;
+
+        player_decrease_action.performed += context => player_decrease_triggered = true;
+        player_decrease_action.canceled += context => player_decrease_triggered = false;
+
+        player_increase_action.performed += context => player_increase_triggered = true;
+        player_increase_action.canceled += context => player_increase_triggered = false;
+
         #endregion
 
         // ui actions
@@ -200,6 +227,9 @@ public class InputHandler : MonoBehaviour
 
         ui_cancel_action.performed += context => ui_cancel_triggered = true;
         ui_cancel_action.canceled += context => ui_cancel_triggered = false;
+
+        ui_exit_action.performed += context => ui_exit_triggered = true;
+        ui_exit_action.canceled += context => ui_exit_triggered = false;
 
         ui_point_action.performed += context => ui_point_input = context.ReadValue<Vector2>();
         ui_point_action.canceled += context => ui_point_input = Vector2.zero;
@@ -231,16 +261,16 @@ public class InputHandler : MonoBehaviour
         ui_map.Enable();
     }
 
-    public void PlayerMapEnable()
+    public void EnablePlayerInput()
     {
-        player_map.Enable();
         ui_map.Disable();
+        player_map.Enable();
     }
 
-    public void UIMapEnable()
+    public void EnableUIInput()
     {
-        ui_map.Enable();
         player_map.Disable();
+        ui_map.Enable();
     }
 
     private void OnDisable()

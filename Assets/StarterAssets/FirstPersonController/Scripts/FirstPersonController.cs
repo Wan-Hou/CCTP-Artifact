@@ -33,7 +33,7 @@ namespace StarterAssets
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
 
-		[Header("Player Grounded")]
+        [Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
 		[Tooltip("Useful for rough ground")]
@@ -64,9 +64,8 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
 #if ENABLE_INPUT_SYSTEM
-		private PlayerInput _playerInput;
+        private PlayerInput _playerInput;
 #endif
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
@@ -108,9 +107,10 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-		}
+			
+        }
 
-		private void Update()
+        private void Update()
 		{
 			JumpAndGravity();
 			GroundedCheck();
@@ -205,8 +205,8 @@ namespace StarterAssets
 				// reset the fall timeout timer
 				_fallTimeoutDelta = FallTimeout;
 
-				// stop our velocity dropping infinitely when grounded
-				if (_verticalVelocity < 0.0f)
+                // stop our velocity dropping infinitely when grounded
+                if (_verticalVelocity < 0.0f)
 				{
 					_verticalVelocity = -2f;
 				}
@@ -235,8 +235,8 @@ namespace StarterAssets
 					_fallTimeoutDelta -= Time.deltaTime;
 				}
 
-				// if we are not grounded, do not jump
-				_input.jump = false;
+                // if we are not grounded, do not jump
+                _input.jump = false;
 			}
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -244,9 +244,10 @@ namespace StarterAssets
 			{
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
-		}
 
-		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+        }
+
+        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;
 			if (lfAngle > 360f) lfAngle -= 360f;
