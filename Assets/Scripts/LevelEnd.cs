@@ -10,7 +10,8 @@ public class LevelEnd : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            player.GetComponent<FirstPersonController>().enabled = false;
+            player.GetComponent<PlayerController>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
             endScreen.SetActive(true);
         }
     }
@@ -20,4 +21,14 @@ public class LevelEnd : MonoBehaviour
         endScreen.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
     }
+    
+    /*private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            player.GetComponent<PlayerController>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            endScreen.SetActive(true);
+        }
+    }*/
 }

@@ -57,6 +57,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string player_scrollwheel = "ScrollWheel";
     [SerializeField] private string player_decrease = "Decrease";
     [SerializeField] private string player_increase = "Increase";
+    [SerializeField] private string player_r = "R";
     #endregion
 
     [Header("UI")]
@@ -72,6 +73,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string ui_scrollwheel = "ScrollWheel";
     [SerializeField] private string ui_trackeddeviceposition = "TrackedDevicePosition";
     [SerializeField] private string ui_trackeddeviceorientation = "TrackedDeviceOrientation";
+    [SerializeField] private string ui_r = "R";
     #endregion
 
     // Local references to action maps and actions
@@ -89,6 +91,7 @@ public class InputHandler : MonoBehaviour
     private InputAction player_scrollwheel_action;
     private InputAction player_decrease_action;
     private InputAction player_increase_action;
+    private InputAction player_r_action;
 
     private InputActionMap ui_map;
     private InputAction ui_navigate_action;
@@ -102,6 +105,7 @@ public class InputHandler : MonoBehaviour
     private InputAction ui_scrollwheel_action;
     private InputAction ui_trackeddeviceposition_action;
     private InputAction ui_trackeddeviceorientation_action;
+    private InputAction ui_r_action;
     #endregion
 
     // Public accessors for input states
@@ -118,6 +122,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 player_scrollwheel_input { get; private set; }
     public bool player_decrease_triggered { get; private set; }
     public bool player_increase_triggered { get; private set; }
+    public bool player_r_triggered { get; private set; }
 
     public Vector2 ui_navigation_input { get; private set; }
     public bool ui_submit_triggered { get; private set; }
@@ -130,6 +135,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 ui_scroll_wheel_input { get; private set; }
     public Vector3 ui_tracked_device_position_input { get; private set; }
     public Quaternion ui_tracked_device_orientation_input { get; private set; }
+    public bool ui_r_triggered { get; private set; }
     #endregion
 
     private void Awake()
@@ -154,6 +160,7 @@ public class InputHandler : MonoBehaviour
         player_scrollwheel_action = inputsystem_actions.FindActionMap(player).FindAction(player_scrollwheel);
         player_decrease_action = inputsystem_actions.FindActionMap(player).FindAction(player_decrease);
         player_increase_action = inputsystem_actions.FindActionMap(player).FindAction(player_increase);
+        player_r_action = inputsystem_actions.FindActionMap(player).FindAction(player_r);
         #endregion
 
         // ui actions
@@ -170,6 +177,7 @@ public class InputHandler : MonoBehaviour
         ui_scrollwheel_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_scrollwheel);
         ui_trackeddeviceposition_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_trackeddeviceposition);
         ui_trackeddeviceorientation_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_trackeddeviceorientation);
+        ui_r_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_r);
         #endregion
 
         RegisterInputActions();
@@ -215,6 +223,9 @@ public class InputHandler : MonoBehaviour
         player_increase_action.performed += context => player_increase_triggered = true;
         player_increase_action.canceled += context => player_increase_triggered = false;
 
+        player_r_action.performed += context => player_r_triggered = true;
+        player_r_action.canceled += context => player_r_triggered = false;
+
         #endregion
 
         // ui actions
@@ -251,6 +262,9 @@ public class InputHandler : MonoBehaviour
 
         ui_trackeddeviceorientation_action.performed += context => ui_tracked_device_orientation_input = context.ReadValue<Quaternion>();
         ui_trackeddeviceorientation_action.canceled += context => ui_tracked_device_orientation_input = Quaternion.Euler(Vector3.zero);
+
+        ui_r_action.performed += context => ui_r_triggered = true;
+        ui_r_action.canceled += context => ui_r_triggered = false;
 
         #endregion
     }

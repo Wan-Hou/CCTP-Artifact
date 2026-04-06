@@ -30,7 +30,7 @@ public class ColourControls : MonoBehaviour
     public Material wallMaterial;
 
     [Header("Keys")]
-    public KeyCode reset        = KeyCode.R;
+    //public KeyCode reset        = KeyCode.R;
     public KeyCode redDownKey   = KeyCode.O;
     public KeyCode redUpKey     = KeyCode.P;
     public KeyCode greenDownKey = KeyCode.K;
@@ -139,10 +139,10 @@ public class ColourControls : MonoBehaviour
             colourIndexBuffer = Vector3.zero;
         }
 
-        if (Input.GetKeyDown(reset))
+        /*if (Input.GetKeyDown(reset))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        }*/
 
         if (Input.GetKeyDown(redDownKey))
         {

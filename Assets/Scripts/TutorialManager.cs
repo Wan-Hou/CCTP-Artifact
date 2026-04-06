@@ -21,6 +21,10 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (GameObject panel in tutorialPanels)
+        {
+            panel.SetActive(false);
+        }
         instance.tutorialPanels[0].SetActive(true);
         input = GameObject.FindGameObjectWithTag("Manager").GetComponent<InputHandler>();
         if (input == null)
@@ -61,6 +65,7 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanels[currentPanelIndex].SetActive(false);
             input.EnablePlayerInput();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

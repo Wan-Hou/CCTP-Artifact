@@ -96,6 +96,11 @@ public class TestManager : MonoBehaviour
         }
     }
 
+    public void SetScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -106,6 +111,26 @@ public class TestManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == game)
         {
             LoadVersionFromMemory();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        //Debug.Log("Current Scene Build Index: " + SceneManager.GetActiveScene().buildIndex + ", Scene Name: " + SceneManager.GetActiveScene().name);
+    }
+
+    private void Update()
+    {
+        if (InputHandler.instance != null)
+        {
+            if (InputHandler.instance.player_r_triggered || 
+                InputHandler.instance.ui_r_triggered)
+            {
+                //Debug.Log("Resetting the game to build index " + start);
+                SceneManager.LoadScene(start);
+            }
         }
     }
 }

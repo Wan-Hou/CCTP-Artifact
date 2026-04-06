@@ -24,12 +24,12 @@ public class PlayerReset : MonoBehaviour
         {
             if (CompareTag("Player"))
             {
-                GetComponent<FirstPersonController>().enabled = false;
+                GetComponent<PlayerController>().enabled = false;
                 objectCarryScript.DropObject();
             }
             Debug.Log(name + " fell below death plane. Respawning at" + _respawnPosition);
             transform.localPosition = _respawnPosition;
-            if (CompareTag("Player")) GetComponent<FirstPersonController>().enabled = true;
+            if (CompareTag("Player")) GetComponent<PlayerController>().enabled = true;
         }
     }
 }

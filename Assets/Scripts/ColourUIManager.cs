@@ -6,11 +6,6 @@ public class ColourUIManager : MonoBehaviour
 {
     public static ColourUIManager instance;
 
-    // Referenced & Current Resolution
-    [SerializeField] private Vector2 refRes;
-    [SerializeField] private Vector2 curRes;
-    [SerializeField] private Vector2 resScale;
-
     [Header("Indicator References")]
     public GameObject currentColourIndicator;
     public GameObject redIndicator;
@@ -19,29 +14,31 @@ public class ColourUIManager : MonoBehaviour
     public Image resultIndicator;
 
     [Header("Settings")]
-    public Vector3 currentColourPosition;
+    [SerializeField]
+    private Vector3 currentColourPosition;
     public Vector3 currentColourOffset;
-    public Vector3 redIndicatorPosition;
-    public Vector3 greenIndicatorPosition;
-    public Vector3 blueIndicatorPosition;
+
+    [SerializeField]
+    private Vector3 redIndicatorPosition;
+    [SerializeField]
+    private Vector3 greenIndicatorPosition;
+    [SerializeField]
+    private Vector3 blueIndicatorPosition;
     public Vector3 arrowIndicatorOffset;
 
     public void UIUpdate()
     {
-        curRes = new Vector2(Screen.width, Screen.height);
-        resScale = new Vector2(curRes.x / refRes.x, curRes.y / refRes.y);
+        currentColourIndicator.transform.localPosition = 
+            currentColourPosition + ColourControls.instance.currentColourIndex * currentColourOffset;
 
-        currentColourIndicator.transform.position = 
-            currentColourPosition + ColourControls.instance.currentColourIndex * resScale.y * currentColourOffset;
+        redIndicator.transform.localPosition = 
+            redIndicatorPosition + ColourControls.instance.colourIndex[0] * arrowIndicatorOffset;
 
-        redIndicator.transform.position = 
-            redIndicatorPosition + ColourControls.instance.colourIndex[0] * resScale.x * arrowIndicatorOffset;
+        greenIndicator.transform.localPosition =
+            greenIndicatorPosition + ColourControls.instance.colourIndex[1] * arrowIndicatorOffset;
 
-        greenIndicator.transform.position =
-            greenIndicatorPosition + ColourControls.instance.colourIndex[1] * resScale.x * arrowIndicatorOffset;
-
-        blueIndicator.transform.position =
-            blueIndicatorPosition + ColourControls.instance.colourIndex[2] * resScale.x * arrowIndicatorOffset;
+        blueIndicator.transform.localPosition =
+            blueIndicatorPosition + ColourControls.instance.colourIndex[2] * arrowIndicatorOffset;
 
         resultIndicator.color = new Color(
 
@@ -66,13 +63,10 @@ public class ColourUIManager : MonoBehaviour
 
     private void Start()
     {
-        currentColourPosition = currentColourIndicator.transform.position;
-        redIndicatorPosition = redIndicator.transform.position;
-        greenIndicatorPosition = greenIndicator.transform.position;
-        blueIndicatorPosition = blueIndicator.transform.position;
-        refRes = GetComponentInParent<CanvasScaler>().referenceResolution;
-        curRes = new Vector2(Screen.width, Screen.height);
-        resScale = new Vector2(curRes.x / refRes.x, curRes.y / refRes.y);
+        currentColourPosition = currentColourIndicator.transform.localPosition;
+        redIndicatorPosition = redIndicator.transform.localPosition;
+        greenIndicatorPosition = greenIndicator.transform.localPosition;
+        blueIndicatorPosition = blueIndicator.transform.localPosition;
     }
 
 }
