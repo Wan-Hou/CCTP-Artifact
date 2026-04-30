@@ -1,3 +1,4 @@
+using StarterAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,11 @@ public class TestManager : MonoBehaviour
     public int start     = 0; 
     public int game_CVND = 1;
     public int game_CVD  = 2;
+
+    [Header("Level Skip")]
+    public bool skipTriggered = false;
+    public Transform playerSkip;
+    public Transform interactableSkip;
 
     // Set the test mode based on the specified version (A, B, C, or D).
     public void SetTestMode(string version)
@@ -73,11 +79,8 @@ public class TestManager : MonoBehaviour
 
     }
 
-    public void SaveVersionToMemory(string version)
-    {
-        PlayerPrefs.SetString("Version", version);
-        // PlayerPrefs.Save();
-        Debug.Log("Version saved.");
+    public void GoToVersion(string version)
+    { 
         switch (version)
         {
             case "A":
@@ -100,6 +103,13 @@ public class TestManager : MonoBehaviour
         }
     }
 
+    public void SaveVersionToMemory(string version)
+    {
+        PlayerPrefs.SetString("Version", version);
+        SaveManager.instance.ClearSaveData();
+        GoToVersion(version);
+    }
+
     public void LoadVersionFromMemory()
     {
         if (PlayerPrefs.HasKey("Version"))
@@ -107,7 +117,7 @@ public class TestManager : MonoBehaviour
             string version = PlayerPrefs.GetString("Version");
             SetTestMode(version);
             versionText.text = version;
-            Debug.Log("Version loaded: " + version);
+            //Debug.Log("Version loaded: " + version);
         }
         else
         {
@@ -116,9 +126,45 @@ public class TestManager : MonoBehaviour
         }
     }
 
-    public void SetScene(int sceneIndex)
+    public void SetScene(int index)
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(index);
+    }
+
+    public void OpenURL(string url)
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            Application.OpenURL(url);
+        }
+    }
+
+    public void SkipLevel()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject interactable = GameObject.FindGameObjectWithTag("Interactable");
+
+        if (player != null)
+        {
+            player.GetComponent<PlayerController>().enabled = false;
+            if (Camera.main != null)
+            {
+                if (Camera.main.GetComponent<ObjectCarry>().isCarryingObj)
+                    Camera.main.GetComponent<ObjectCarry>().DropObjectNoRB();
+                interactable = GameObject.FindGameObjectWithTag("Interactable");
+            }
+            player.transform.SetLocalPositionAndRotation(playerSkip.position + Vector3.up, playerSkip.rotation);
+            player.GetComponent<PlayerController>().enabled = true;
+            if (interactable.transform.parent != null)
+                interactable.transform.SetParent(null);
+            interactable.transform.localPosition = interactableSkip.position + Vector3.up;
+            //Debug.Break();
+            Debug.Log("Level skipped successfully.");
+        }
+        else
+        {
+            Debug.LogWarning("Player or Interactable not found. Cannot skip level.");
+        }
     }
 
     private void Awake()
@@ -145,11 +191,30 @@ public class TestManager : MonoBehaviour
     {
         if (InputHandler.instance != null)
         {
-            if (InputHandler.instance.player_r_triggered || 
-                InputHandler.instance.ui_r_triggered)
+            if (InputHandler.instance.player_reset_triggered || 
+                InputHandler.instance.ui_reset_triggered || 
+                InputHandler.instance.ui_cancel_triggered)
             {
                 //Debug.Log("Resetting the game to build index " + start);
+                SaveManager.instance.SaveToMemory();
                 SceneManager.LoadScene(start);
+            }
+
+            if (InputHandler.instance.player_skip_triggered)
+            {
+                if (!skipTriggered)
+                { 
+                    SkipLevel(); 
+                    skipTriggered = true;
+                }
+            }
+            else skipTriggered = false;
+        }
+        else
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
             }
         }
     }

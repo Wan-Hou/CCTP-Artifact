@@ -23,20 +23,26 @@ public class ColourControls : MonoBehaviour
 
     [Header("Indexes")]
     public Vector3Int colourIndex;
-    private float bufferTime = 0.5f;
+    private readonly float bufferTime = 0.5f;
     private Vector3 colourIndexBuffer;
     public int currentColourIndex;
     public Material activatedObstacleMaterial;
     public Material wallMaterial;
 
-    [Header("Keys")]
-    //public KeyCode reset        = KeyCode.R;
+    [Header("VFX")]
+    public GameObject redMatchVFX;
+    public GameObject greenMatchVFX;
+    public GameObject blueMatchVFX;
+    public GameObject activateVFX;
+
+    /*[Header("Keys")]
+    public KeyCode reset        = KeyCode.R;
     public KeyCode redDownKey   = KeyCode.O;
     public KeyCode redUpKey     = KeyCode.P;
     public KeyCode greenDownKey = KeyCode.K;
     public KeyCode greenUpKey   = KeyCode.L;
     public KeyCode blueDownKey  = KeyCode.N;
-    public KeyCode blueUpKey    = KeyCode.M;
+    public KeyCode blueUpKey    = KeyCode.M;*/
 
     [Header("Lists")]
     public List<GameObject> resetList;
@@ -51,16 +57,32 @@ public class ColourControls : MonoBehaviour
         }
     }
 
-    void ChangeFilterColour()
+    public void ChangeFilterColour()
     { 
-        int redValue   = colourIndex[0] == 0 ? 0 : 64 * colourIndex[0] - 1;
+        /*int redValue   = colourIndex[0] == 0 ? 0 : 64 * colourIndex[0] - 1;
         int greenValue = colourIndex[1] == 0 ? 0 : 64 * colourIndex[1] - 1;
         int blueValue  = colourIndex[2] == 0 ? 0 : 64 * colourIndex[2] - 1;
 
-        UIFilter.color = new Color(redValue / 255f, greenValue / 255f, blueValue / 255f, UIFilter.color.a);
+        UIFilter.color = new Color(redValue / 255f, greenValue / 255f, blueValue / 255f, UIFilter.color.a);*/
 
         ColourUIManager.instance.UIUpdate();
         ObstacleActivationCheck();
+    }
+
+    void FilterInput(int colourChannel, int direction)
+    {
+        if (colourIndexBuffer[colourChannel] == 0)
+        {
+            colourIndex[colourChannel] = Mathf.Clamp(colourIndex[colourChannel] + direction, 0, 4);
+            ChangeFilterColour();
+            colourIndexBuffer[colourChannel] = bufferTime;
+        }
+        else
+        {
+            colourIndexBuffer[colourChannel] =
+                Mathf.Max(0, colourIndexBuffer[colourChannel] - Time.deltaTime);
+        }
+        //Debug.Log($"Colour Index: {colourChannel} | Buffer: {colourIndexBuffer}");
     }
 
     private void Awake()
@@ -104,39 +126,12 @@ public class ColourControls : MonoBehaviour
 
         if (inputHandler.player_decrease_triggered)
         {
-            if (colourIndexBuffer[currentColourIndex] == 0)
-            {
-                colourIndex[currentColourIndex] = Mathf.Max(0, colourIndex[currentColourIndex] - 1);
-                ChangeFilterColour();
-                colourIndexBuffer = Vector3.zero;
-                colourIndexBuffer[currentColourIndex] = bufferTime;
-            }
-            else
-            {
-                colourIndexBuffer[currentColourIndex] = 
-                    Mathf.Max(0, colourIndexBuffer[currentColourIndex] - Time.deltaTime);
-            }
+            FilterInput(currentColourIndex, -1);
         }
 
         if (inputHandler.player_increase_triggered)
         {
-            if (colourIndexBuffer[currentColourIndex] == 0)
-            {
-                colourIndex[currentColourIndex] = Mathf.Min(4, colourIndex[currentColourIndex] + 1);
-                ChangeFilterColour();
-                colourIndexBuffer = Vector3.zero;
-                colourIndexBuffer[currentColourIndex] = bufferTime;
-            }
-            else
-            {
-                colourIndexBuffer[currentColourIndex] =
-                    Mathf.Max(0, colourIndexBuffer[currentColourIndex] - Time.deltaTime);
-            }
-        }
-
-        if (inputHandler.player_decrease_triggered == false && inputHandler.player_increase_triggered == false)
-        {
-            colourIndexBuffer = Vector3.zero;
+            FilterInput(currentColourIndex, 1);
         }
 
         /*if (Input.GetKeyDown(reset))
@@ -144,40 +139,46 @@ public class ColourControls : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }*/
 
-        if (Input.GetKeyDown(redDownKey))
+        if (inputHandler.player_red_minus_triggered)
         {
-            colourIndex[0] = Mathf.Max(0, colourIndex[0] - 1);
-            ChangeFilterColour();
+            FilterInput(0, -1);
         }
 
-        if (Input.GetKeyDown(redUpKey))
+        if (inputHandler.player_red_plus_triggered)
         {
-            colourIndex[0] = Mathf.Min(4, colourIndex[0] + 1);
-            ChangeFilterColour();
+            FilterInput(0, 1);
         }
 
-        if (Input.GetKeyDown(greenDownKey))
+        if (inputHandler.player_green_minus_triggered)
         {
-            colourIndex[1] = Mathf.Max(0, colourIndex[1] - 1);
-            ChangeFilterColour();
+            FilterInput(1, -1);
         }
 
-        if (Input.GetKeyDown(greenUpKey))
+        if (inputHandler.player_green_plus_triggered)
         {
-            colourIndex[1] = Mathf.Min(4, colourIndex[1] + 1);
-            ChangeFilterColour();
+            FilterInput(1, 1);
         }
 
-        if (Input.GetKeyDown(blueDownKey))
+        if (inputHandler.player_blue_minus_triggered)
         {
-            colourIndex[2] = Mathf.Max(0, colourIndex[2] - 1);
-            ChangeFilterColour();
+            FilterInput(2, -1);
         }
 
-        if (Input.GetKeyDown(blueUpKey))
+        if (inputHandler.player_blue_plus_triggered)
         {
-            colourIndex[2] = Mathf.Min(4, colourIndex[2] + 1);
-            ChangeFilterColour();
+            FilterInput(2, 1);
+        }
+
+        if (!inputHandler.player_decrease_triggered && 
+            !inputHandler.player_increase_triggered &&
+            !inputHandler.player_red_minus_triggered &&
+            !inputHandler.player_red_plus_triggered &&
+            !inputHandler.player_green_minus_triggered &&
+            !inputHandler.player_green_plus_triggered &&
+            !inputHandler.player_blue_minus_triggered &&
+            !inputHandler.player_blue_plus_triggered)
+        {
+            colourIndexBuffer = Vector3.zero;
         }
     }
 }

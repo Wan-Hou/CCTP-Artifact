@@ -8,7 +8,10 @@ using UnityEngine.UIElements;
 public class ObstacleEditor : Editor
 {
     SerializedProperty _colourKey;
-    SerializedProperty _effectVFX;
+    SerializedProperty _keyDifference;
+    SerializedProperty _followParentColour;
+    SerializedProperty _continuousFlashing;
+
     SerializedProperty _action;
 
     SerializedProperty _camouflage;
@@ -18,6 +21,7 @@ public class ObstacleEditor : Editor
     SerializedProperty _translateSpeed;
     SerializedProperty _translateDelay;
     SerializedProperty _isPlatform;
+    SerializedProperty _canTranslate;
 
     SerializedProperty _rotateValue;
 
@@ -29,8 +33,14 @@ public class ObstacleEditor : Editor
         public static GUIContent colourKey = EditorGUIUtility.TrTextContent("Colour Key",
             "The colour key that determines when this obstacle is active.");
 
-        public static GUIContent effectVFX = EditorGUIUtility.TrTextContent("Effect VFX", 
-            "The visual effect to play when this obstacle is activated.");
+        public static GUIContent keyDifference = EditorGUIUtility.TrTextContent("Key Difference", 
+            "The difference between the obstacle's colour key and the player's current colour.");
+
+        public static GUIContent followParentColour = EditorGUIUtility.TrTextContent("Follow Parent Colour", 
+            "Whether the obstacle should follow the colour of its parent object.");
+
+        public static GUIContent continuousFlashing = EditorGUIUtility.TrTextContent("Continuous Flashing",
+            "If the correct match particle effect continuously flashes.");
 
         public static GUIContent action = EditorGUIUtility.TrTextContent("Action", 
             "The action that this obstacle performs when activated.");
@@ -50,10 +60,13 @@ public class ObstacleEditor : Editor
             "The delay between translation from Point A to Point B.");
         public static GUIContent isPlatform = EditorGUIUtility.TrTextContent("Is Platform", 
             "Whether the obstacle should be considered a platform for the player to stand on.");
+        public static GUIContent canTranslate = EditorGUIUtility.TrTextContent("Can Translate", 
+            "Whether the obstacle can translate when activated.");
 
         // Rotate Settings
         public static GUIContent rotateValue = EditorGUIUtility.TrTextContent("Rotate Value", 
             "The rotation value to apply when the obstacle is activated.");
+
     }
 
     private void SwapTextColours(Color text, Color focus)
@@ -99,6 +112,7 @@ public class ObstacleEditor : Editor
             EditorGUILayout.PropertyField(_translateSpeed, Variables.translateSpeed);
             EditorGUILayout.PropertyField(_translateDelay, Variables.translateDelay);
             EditorGUILayout.PropertyField(_isPlatform, Variables.isPlatform);
+            EditorGUILayout.PropertyField(_canTranslate, Variables.canTranslate);
             EditorGUI.indentLevel--;
         }
         EditorGUI.indentLevel--;
@@ -124,8 +138,9 @@ public class ObstacleEditor : Editor
     public void OnEnable()
     {
         _colourKey = serializedObject.FindProperty("colourKey");
-        
-        _effectVFX = serializedObject.FindProperty("effectVFX");
+        _keyDifference = serializedObject.FindProperty("keyDifference");
+        _followParentColour = serializedObject.FindProperty("followParentColour");
+        _continuousFlashing = serializedObject.FindProperty("continuousFlashing");
 
         _action = serializedObject.FindProperty("action");
 
@@ -136,6 +151,7 @@ public class ObstacleEditor : Editor
         _translateSpeed = serializedObject.FindProperty("translateSpeed");
         _translateDelay = serializedObject.FindProperty("translateDelay");
         _isPlatform = serializedObject.FindProperty("isPlatform");
+        _canTranslate = serializedObject.FindProperty("canTranslate");
 
         _rotateValue = serializedObject.FindProperty("rotateValue");
     }
@@ -187,15 +203,13 @@ public class ObstacleEditor : Editor
             (EditorGUILayout.GetControlRect(), Variables.colourKey, _colourKey.vector3IntValue);
         SwapTextColours(labelColour, labelFocus);
         EditorGUILayout.EndHorizontal();
+        _keyDifference.vector3IntValue = EditorGUI.Vector3IntField
+            (EditorGUILayout.GetControlRect(), Variables.keyDifference, _keyDifference.vector3IntValue);
+        if (GUILayout.Button("Check Colour Key")) ColourControls.instance.ChangeFilterColour();
+        EditorGUILayout.PropertyField(_followParentColour, Variables.followParentColour);
+        EditorGUILayout.PropertyField(_continuousFlashing, Variables.continuousFlashing);
         EditorGUI.indentLevel--;
         
-        EditorGUILayout.Space();
-
-        EditorGUILayout.LabelField("Effect Settings", EditorStyles.boldLabel);
-        EditorGUI.indentLevel++;
-        EditorGUILayout.PropertyField(_effectVFX, Variables.effectVFX);
-        EditorGUI.indentLevel--;
-
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Obstacle Action Type", EditorStyles.boldLabel);

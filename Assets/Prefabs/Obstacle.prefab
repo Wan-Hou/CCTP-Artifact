@@ -121,13 +121,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063f73521b387544da0fc699ad1edf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: 0
   colourKey: {x: 0, y: 0, z: 0}
-  currentObstacleMaterial: {fileID: 0}
+  keyDifference: {x: 0, y: 0, z: 0}
+  colourAssigned: 0
+  followParentColour: 0
+  colourKeyMaterial: {fileID: 0}
+  redCorrect: 0
+  greenCorrect: 0
+  blueCorrect: 0
+  action: 0
+  camouflage: 0
   pointA: {x: 0, y: 0, z: 0}
   pointB: {x: 0, y: 0, z: 0}
   translateSpeed: 2
   translateDelay: 1
+  isPlatform: 0
+  platformCollider: {fileID: 0}
   canTranslate: 0
   toB: 0
   rotateValue: {x: 0, y: 0, z: 0}

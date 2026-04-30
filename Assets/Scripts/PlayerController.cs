@@ -23,13 +23,17 @@ namespace StarterAssets
 		public float SpeedChangeRate = 10.0f;
         [Tooltip("Terminal Velocity")]
         public float TerminalVelocity = 53.0f;
+		[Tooltip("External forces applied to the player, in respects to delta time")]
+        public Vector3 externalVelocity;
+		[Tooltip("External forces applied to the player, without respects to delta time")]
+        public Vector3 externalVelocityComponent;
 
         // player
         private float _speed;
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 
-		[Space(10)]
+        [Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -172,10 +176,20 @@ namespace StarterAssets
             // if there is no input, set the target speed to 0
             if (_input.player_move_input == Vector2.zero) targetSpeed = 0.0f;
 
-			// a reference to the players current horizontal velocity
-			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+			/*// a reference to the players current horizontal velocity
+			externalVelocityComponent = Vector3.zero;
+			if (externalVelocity.x < 0f) externalVelocityComponent.x = -2f;
+			if (externalVelocity.x > 0f) externalVelocityComponent.x =  2f;
+            if (externalVelocity.z < 0f) externalVelocityComponent.z = -2f;
+			if (externalVelocity.z > 0f) externalVelocityComponent.z =  2f;*/
 
-			float speedOffset = 0.1f;
+            float currentHorizontalSpeed =
+				new Vector3(_controller.velocity.x - externalVelocityComponent.x, 0.0f, 
+							_controller.velocity.z - externalVelocityComponent.z).magnitude;
+            //Debug.Log("Current Horizontal Speed: " + currentHorizontalSpeed + ", Velocity: " + _controller.velocity);
+            externalVelocityComponent = Vector3.zero;
+
+            float speedOffset = 0.1f;
 			float inputMagnitude = _input.analogMovement ? _input.player_move_input.magnitude : 1f;
 
 			// accelerate or decelerate to target speed
@@ -205,8 +219,10 @@ namespace StarterAssets
 			}
 
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-		}
+			_controller.Move((inputDirection.normalized * _speed + new Vector3(0.0f, _verticalVelocity, 0.0f)) * Time.deltaTime + externalVelocity);
+
+			externalVelocity = Vector3.zero;
+        }
 
 		private void JumpAndGravity()
 		{

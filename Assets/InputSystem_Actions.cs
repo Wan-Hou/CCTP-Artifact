@@ -125,7 +125,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -201,9 +201,81 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""R"",
+                    ""name"": ""Reset"",
                     ""type"": ""Button"",
                     ""id"": ""dfa3ff57-68e8-4ab6-81c7-fd7e21358593"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tutorial"",
+                    ""type"": ""Button"",
+                    ""id"": ""341763fb-09f9-4b67-8bf6-85ff70086990"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Red Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""979bf412-43aa-41de-97ab-f691101b5767"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Red Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""c17fb528-0978-466c-9604-87146b77522d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Green Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""feeaec33-5357-410b-bd45-f33631a4b270"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Green Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""52f24a23-37c7-48eb-a5ac-d0ed03dd82b0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Blue Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""658a000c-49ef-4bc0-8dca-70e628b93802"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Blue Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""06904912-85b0-48b8-8e32-af85425b99a3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""da308cd3-5a1c-4e25-9a48-9f36af4fda02"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -632,11 +704,99 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6045c8db-784b-4172-bc9f-3e0bfcb04ec1"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""R"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c13b875-fa37-4afa-86d9-cc5b670eba3c"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Tutorial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""252c4585-e81e-465d-abe4-aa63d57ad992"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Red Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62bfd848-0fc7-4fc6-92ea-855ed59c0148"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Red Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""876eacdd-e938-4889-91a2-9415f4e591e1"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Green Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f316c2e-822d-4572-9619-7c2f5c088ebe"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Green Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f16b265f-9a94-4e76-a100-9b497a2e2596"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Blue Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc026ee7-32d6-4da0-a1df-a48303d0a5e9"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Blue Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b4afc4a-9424-4d03-8f75-795d4349f863"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -746,7 +906,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""R"",
+                    ""name"": ""Reset"",
                     ""type"": ""Button"",
                     ""id"": ""67e6755b-c680-4ab8-b69a-ad0e9939328d"",
                     ""expectedControlType"": """",
@@ -1027,7 +1187,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""R"",
+                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1276,7 +1436,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_ScrollWheel = m_Player.FindAction("ScrollWheel", throwIfNotFound: true);
         m_Player_Decrease = m_Player.FindAction("Decrease", throwIfNotFound: true);
         m_Player_Increase = m_Player.FindAction("Increase", throwIfNotFound: true);
-        m_Player_R = m_Player.FindAction("R", throwIfNotFound: true);
+        m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
+        m_Player_Tutorial = m_Player.FindAction("Tutorial", throwIfNotFound: true);
+        m_Player_RedDecrease = m_Player.FindAction("Red Decrease", throwIfNotFound: true);
+        m_Player_RedIncrease = m_Player.FindAction("Red Increase", throwIfNotFound: true);
+        m_Player_GreenDecrease = m_Player.FindAction("Green Decrease", throwIfNotFound: true);
+        m_Player_GreenIncrease = m_Player.FindAction("Green Increase", throwIfNotFound: true);
+        m_Player_BlueDecrease = m_Player.FindAction("Blue Decrease", throwIfNotFound: true);
+        m_Player_BlueIncrease = m_Player.FindAction("Blue Increase", throwIfNotFound: true);
+        m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1290,7 +1458,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_R = m_UI.FindAction("R", throwIfNotFound: true);
+        m_UI_Reset = m_UI.FindAction("Reset", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1384,7 +1552,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ScrollWheel;
     private readonly InputAction m_Player_Decrease;
     private readonly InputAction m_Player_Increase;
-    private readonly InputAction m_Player_R;
+    private readonly InputAction m_Player_Reset;
+    private readonly InputAction m_Player_Tutorial;
+    private readonly InputAction m_Player_RedDecrease;
+    private readonly InputAction m_Player_RedIncrease;
+    private readonly InputAction m_Player_GreenDecrease;
+    private readonly InputAction m_Player_GreenIncrease;
+    private readonly InputAction m_Player_BlueDecrease;
+    private readonly InputAction m_Player_BlueIncrease;
+    private readonly InputAction m_Player_Skip;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1445,9 +1621,41 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Increase => m_Wrapper.m_Player_Increase;
         /// <summary>
-        /// Provides access to the underlying input action "Player/R".
+        /// Provides access to the underlying input action "Player/Reset".
         /// </summary>
-        public InputAction @R => m_Wrapper.m_Player_R;
+        public InputAction @Reset => m_Wrapper.m_Player_Reset;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Tutorial".
+        /// </summary>
+        public InputAction @Tutorial => m_Wrapper.m_Player_Tutorial;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RedDecrease".
+        /// </summary>
+        public InputAction @RedDecrease => m_Wrapper.m_Player_RedDecrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RedIncrease".
+        /// </summary>
+        public InputAction @RedIncrease => m_Wrapper.m_Player_RedIncrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/GreenDecrease".
+        /// </summary>
+        public InputAction @GreenDecrease => m_Wrapper.m_Player_GreenDecrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/GreenIncrease".
+        /// </summary>
+        public InputAction @GreenIncrease => m_Wrapper.m_Player_GreenIncrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/BlueDecrease".
+        /// </summary>
+        public InputAction @BlueDecrease => m_Wrapper.m_Player_BlueDecrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/BlueIncrease".
+        /// </summary>
+        public InputAction @BlueIncrease => m_Wrapper.m_Player_BlueIncrease;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Skip".
+        /// </summary>
+        public InputAction @Skip => m_Wrapper.m_Player_Skip;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1510,9 +1718,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Increase.started += instance.OnIncrease;
             @Increase.performed += instance.OnIncrease;
             @Increase.canceled += instance.OnIncrease;
-            @R.started += instance.OnR;
-            @R.performed += instance.OnR;
-            @R.canceled += instance.OnR;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
+            @Tutorial.started += instance.OnTutorial;
+            @Tutorial.performed += instance.OnTutorial;
+            @Tutorial.canceled += instance.OnTutorial;
+            @RedDecrease.started += instance.OnRedDecrease;
+            @RedDecrease.performed += instance.OnRedDecrease;
+            @RedDecrease.canceled += instance.OnRedDecrease;
+            @RedIncrease.started += instance.OnRedIncrease;
+            @RedIncrease.performed += instance.OnRedIncrease;
+            @RedIncrease.canceled += instance.OnRedIncrease;
+            @GreenDecrease.started += instance.OnGreenDecrease;
+            @GreenDecrease.performed += instance.OnGreenDecrease;
+            @GreenDecrease.canceled += instance.OnGreenDecrease;
+            @GreenIncrease.started += instance.OnGreenIncrease;
+            @GreenIncrease.performed += instance.OnGreenIncrease;
+            @GreenIncrease.canceled += instance.OnGreenIncrease;
+            @BlueDecrease.started += instance.OnBlueDecrease;
+            @BlueDecrease.performed += instance.OnBlueDecrease;
+            @BlueDecrease.canceled += instance.OnBlueDecrease;
+            @BlueIncrease.started += instance.OnBlueIncrease;
+            @BlueIncrease.performed += instance.OnBlueIncrease;
+            @BlueIncrease.canceled += instance.OnBlueIncrease;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
         }
 
         /// <summary>
@@ -1560,9 +1792,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Increase.started -= instance.OnIncrease;
             @Increase.performed -= instance.OnIncrease;
             @Increase.canceled -= instance.OnIncrease;
-            @R.started -= instance.OnR;
-            @R.performed -= instance.OnR;
-            @R.canceled -= instance.OnR;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
+            @Tutorial.started -= instance.OnTutorial;
+            @Tutorial.performed -= instance.OnTutorial;
+            @Tutorial.canceled -= instance.OnTutorial;
+            @RedDecrease.started -= instance.OnRedDecrease;
+            @RedDecrease.performed -= instance.OnRedDecrease;
+            @RedDecrease.canceled -= instance.OnRedDecrease;
+            @RedIncrease.started -= instance.OnRedIncrease;
+            @RedIncrease.performed -= instance.OnRedIncrease;
+            @RedIncrease.canceled -= instance.OnRedIncrease;
+            @GreenDecrease.started -= instance.OnGreenDecrease;
+            @GreenDecrease.performed -= instance.OnGreenDecrease;
+            @GreenDecrease.canceled -= instance.OnGreenDecrease;
+            @GreenIncrease.started -= instance.OnGreenIncrease;
+            @GreenIncrease.performed -= instance.OnGreenIncrease;
+            @GreenIncrease.canceled -= instance.OnGreenIncrease;
+            @BlueDecrease.started -= instance.OnBlueDecrease;
+            @BlueDecrease.performed -= instance.OnBlueDecrease;
+            @BlueDecrease.canceled -= instance.OnBlueDecrease;
+            @BlueIncrease.started -= instance.OnBlueIncrease;
+            @BlueIncrease.performed -= instance.OnBlueIncrease;
+            @BlueIncrease.canceled -= instance.OnBlueIncrease;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
         }
 
         /// <summary>
@@ -1611,7 +1867,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_R;
+    private readonly InputAction m_UI_Reset;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -1668,9 +1924,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         /// <summary>
-        /// Provides access to the underlying input action "UI/R".
+        /// Provides access to the underlying input action "UI/Reset".
         /// </summary>
-        public InputAction @R => m_Wrapper.m_UI_R;
+        public InputAction @Reset => m_Wrapper.m_UI_Reset;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1730,9 +1986,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-            @R.started += instance.OnR;
-            @R.performed += instance.OnR;
-            @R.canceled += instance.OnR;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         /// <summary>
@@ -1777,9 +2033,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
-            @R.started -= instance.OnR;
-            @R.performed -= instance.OnR;
-            @R.canceled -= instance.OnR;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         /// <summary>
@@ -1970,12 +2226,68 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnIncrease(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "R" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Reset" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnR(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Tutorial" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTutorial(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Red Decrease" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRedDecrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Red Increase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRedIncrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Green Decrease" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGreenDecrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Green Increase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGreenIncrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Blue Decrease" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBlueDecrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Blue Increase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBlueIncrease(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skip" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkip(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
@@ -2062,11 +2374,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "R" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Reset" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnR(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

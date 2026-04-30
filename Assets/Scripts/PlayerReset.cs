@@ -6,7 +6,7 @@ public class PlayerReset : MonoBehaviour
     [Tooltip("World height for respawn")]
     public float DeathPlane = -50f;
 
-    [SerializeField] private Vector3 _respawnPosition;
+    public Vector3 respawnPosition;
 
     [Tooltip("ObjectCarry Script Reference to drop interactable on death")]
     public ObjectCarry objectCarryScript;
@@ -14,7 +14,7 @@ public class PlayerReset : MonoBehaviour
     void Start()
     {
         // get respawn position
-        _respawnPosition = transform.position + new Vector3(0,1,0);
+        respawnPosition = transform.position + Vector3.up; 
     }
 
     // Update is called once per frame
@@ -25,10 +25,16 @@ public class PlayerReset : MonoBehaviour
             if (CompareTag("Player"))
             {
                 GetComponent<PlayerController>().enabled = false;
-                objectCarryScript.DropObject();
+                objectCarryScript.DropObjectNoRB();
             }
-            Debug.Log(name + " fell below death plane. Respawning at" + _respawnPosition);
-            transform.localPosition = _respawnPosition;
+            else
+            {
+                Rigidbody rb = GetComponent<Rigidbody>();
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+            Debug.Log(name + " fell below death plane. Respawning at" + respawnPosition);
+            transform.localPosition = respawnPosition;
             if (CompareTag("Player")) GetComponent<PlayerController>().enabled = true;
         }
     }

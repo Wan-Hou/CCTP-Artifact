@@ -9,7 +9,7 @@ public class InteractableObstacle : MonoBehaviour
     public bool vertical = true;
     public float move = 2f;
     public float duration = 1f;
-    [SerializeField] private bool isMoving = false;
+    //[SerializeField] private bool isMoving = false;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class InteractableObstacle : MonoBehaviour
     IEnumerator InteractableObstacleMove(bool isOpening)
     {
         Debug.Log("Starting obstacle move: " + (isOpening ? "Opening" : "Closing"));
-        isMoving = true;
+        //isMoving = true;
         float elapsedTime = 0f;
         if (isOpening)
         {
@@ -60,6 +60,6 @@ public class InteractableObstacle : MonoBehaviour
             }
             transform.position = closedPosition;
         }
-        isMoving = false;
+        //isMoving = false;
     }
 }

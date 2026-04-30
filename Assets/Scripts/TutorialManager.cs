@@ -5,11 +5,13 @@ public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager instance;
 
+    public GameObject hud;
     public List<GameObject> tutorialPanels;
     public int currentPanelIndex = 0;
 
     private InputHandler input;
     private bool pauseNavInput = false;
+    private bool tutorialInputTriggered = false;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        hud.SetActive(false);
         foreach (GameObject panel in tutorialPanels)
         {
             panel.SetActive(false);
@@ -56,17 +59,45 @@ public class TutorialManager : MonoBehaviour
                 tutorialPanels[currentPanelIndex].SetActive(true);
                 pauseNavInput = true;
             }
+            else
+            {
+                tutorialPanels[currentPanelIndex].SetActive(false);
+                hud.SetActive(true);
+                input.EnablePlayerInput();
+            }
         }
         if (input.ui_navigation_input.x == 0)
         {
             pauseNavInput = false;
         }
-        if (input.ui_cancel_triggered || input.ui_exit_triggered)
+        if (input.ui_exit_triggered)
         {
             tutorialPanels[currentPanelIndex].SetActive(false);
+            hud.SetActive(true);
             input.EnablePlayerInput();
-            Cursor.lockState = CursorLockMode.Locked;
         }
+
+        if (input.player_tutorial_triggered)
+        {
+            if (!tutorialInputTriggered)
+            {
+                if (tutorialPanels[currentPanelIndex].activeSelf)
+                {
+                    tutorialPanels[currentPanelIndex].SetActive(false);
+                    hud.SetActive(true);
+                    input.EnablePlayerInput();
+                }
+                else
+                {
+                    input.EnableUIInput();
+                    tutorialPanels[currentPanelIndex].SetActive(true);
+                    hud.SetActive(false);
+                }
+
+                tutorialInputTriggered = true;
+            }
+        }
+        else tutorialInputTriggered = false;
     }
 
 }

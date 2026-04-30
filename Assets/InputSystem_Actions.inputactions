@@ -39,7 +39,7 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -115,9 +115,81 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "R",
+                    "name": "Reset",
                     "type": "Button",
                     "id": "dfa3ff57-68e8-4ab6-81c7-fd7e21358593",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tutorial",
+                    "type": "Button",
+                    "id": "341763fb-09f9-4b67-8bf6-85ff70086990",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Red Decrease",
+                    "type": "Button",
+                    "id": "979bf412-43aa-41de-97ab-f691101b5767",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Red Increase",
+                    "type": "Button",
+                    "id": "c17fb528-0978-466c-9604-87146b77522d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Green Decrease",
+                    "type": "Button",
+                    "id": "feeaec33-5357-410b-bd45-f33631a4b270",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Green Increase",
+                    "type": "Button",
+                    "id": "52f24a23-37c7-48eb-a5ac-d0ed03dd82b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Blue Decrease",
+                    "type": "Button",
+                    "id": "658a000c-49ef-4bc0-8dca-70e628b93802",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Blue Increase",
+                    "type": "Button",
+                    "id": "06904912-85b0-48b8-8e32-af85425b99a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "da308cd3-5a1c-4e25-9a48-9f36af4fda02",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -546,11 +618,99 @@
                 {
                     "name": "",
                     "id": "6045c8db-784b-4172-bc9f-3e0bfcb04ec1",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "R",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c13b875-fa37-4afa-86d9-cc5b670eba3c",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Tutorial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "252c4585-e81e-465d-abe4-aa63d57ad992",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Red Decrease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62bfd848-0fc7-4fc6-92ea-855ed59c0148",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Red Increase",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "876eacdd-e938-4889-91a2-9415f4e591e1",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Green Decrease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f316c2e-822d-4572-9619-7c2f5c088ebe",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Green Increase",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f16b265f-9a94-4e76-a100-9b497a2e2596",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blue Decrease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc026ee7-32d6-4da0-a1df-a48303d0a5e9",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blue Increase",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b4afc4a-9424-4d03-8f75-795d4349f863",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -660,7 +820,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "R",
+                    "name": "Reset",
                     "type": "Button",
                     "id": "67e6755b-c680-4ab8-b69a-ad0e9939328d",
                     "expectedControlType": "",
@@ -941,7 +1101,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "R",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

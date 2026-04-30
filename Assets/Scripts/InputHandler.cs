@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     public static InputHandler instance = null;
-    [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset inputsystem_actions;
     [SerializeField] private PlayerInput player_input;
     [HideInInspector]
@@ -36,44 +35,52 @@ public class InputHandler : MonoBehaviour
     }
     #endregion
 
-    [Header("Action Map Name References")]
+    // Action Map Name References
     #region
     [SerializeField] private string player = "Player";
     [SerializeField] private string ui = "UI";
     #endregion
 
-    [Header("Action Name References")]
-    [Header("Player")]
+    // Player Action Name References
     #region
-    [SerializeField] private string player_move = "Move";
-    [SerializeField] private string player_look = "Look";
-    [SerializeField] private string player_attack = "Attack";
-    [SerializeField] private string player_interact = "Interact";
-    [SerializeField] private string player_crouch = "Crouch";
-    [SerializeField] private string player_jump = "Jump";
-    [SerializeField] private string player_previous = "Previous";
-    [SerializeField] private string player_next = "Next";
-    [SerializeField] private string player_sprint = "Sprint";
+    [SerializeField] private string player_move        = "Move";
+    [SerializeField] private string player_look        = "Look";
+    [SerializeField] private string player_attack      = "Attack";
+    [SerializeField] private string player_interact    = "Interact";
+    [SerializeField] private string player_crouch      = "Crouch";
+    [SerializeField] private string player_jump        = "Jump";
+    [SerializeField] private string player_previous    = "Previous";
+    [SerializeField] private string player_next        = "Next";
+    [SerializeField] private string player_sprint      = "Sprint";
     [SerializeField] private string player_scrollwheel = "ScrollWheel";
-    [SerializeField] private string player_decrease = "Decrease";
-    [SerializeField] private string player_increase = "Increase";
-    [SerializeField] private string player_r = "R";
+    [SerializeField] private string player_decrease    = "Decrease";
+    [SerializeField] private string player_increase    = "Increase";
+    [SerializeField] private string player_reset       = "Reset";
+    [SerializeField] private string player_tutorial    = "Tutorial";
+    [SerializeField] private string player_red_minus   = "Red Decrease";
+    [SerializeField] private string player_red_plus    = "Red Increase";
+    [SerializeField] private string player_green_minus = "Green Decrease";
+    [SerializeField] private string player_green_plus  = "Green Increase";
+    [SerializeField] private string player_blue_minus  = "Blue Decrease";
+    [SerializeField] private string player_blue_plus   = "Blue Increase";
+    [SerializeField] private string player_skip        = "Skip";
+
     #endregion
 
-    [Header("UI")]
+    // UI Action Name References
     #region
-    [SerializeField] private string ui_navigate = "Navigate";
-    [SerializeField] private string ui_submit = "Submit";
-    [SerializeField] private string ui_cancel = "Cancel";
-    [SerializeField] private string ui_exit = "Exit";
-    [SerializeField] private string ui_point = "Point";
-    [SerializeField] private string ui_click = "Click";
-    [SerializeField] private string ui_rightclick = "RightClick";
-    [SerializeField] private string ui_middleclick = "MiddleClick";
-    [SerializeField] private string ui_scrollwheel = "ScrollWheel";
-    [SerializeField] private string ui_trackeddeviceposition = "TrackedDevicePosition";
+    [SerializeField] private string ui_navigate                 = "Navigate";
+    [SerializeField] private string ui_submit                   = "Submit";
+    [SerializeField] private string ui_cancel                   = "Cancel";
+    [SerializeField] private string ui_exit                     = "Exit";
+    [SerializeField] private string ui_point                    = "Point";
+    [SerializeField] private string ui_click                    = "Click";
+    [SerializeField] private string ui_rightclick               = "RightClick";
+    [SerializeField] private string ui_middleclick              = "MiddleClick";
+    [SerializeField] private string ui_scrollwheel              = "ScrollWheel";
+    [SerializeField] private string ui_trackeddeviceposition    = "TrackedDevicePosition";
     [SerializeField] private string ui_trackeddeviceorientation = "TrackedDeviceOrientation";
-    [SerializeField] private string ui_r = "R";
+    [SerializeField] private string ui_reset                    = "Reset";
     #endregion
 
     // Local references to action maps and actions
@@ -91,7 +98,15 @@ public class InputHandler : MonoBehaviour
     private InputAction player_scrollwheel_action;
     private InputAction player_decrease_action;
     private InputAction player_increase_action;
-    private InputAction player_r_action;
+    private InputAction player_reset_action;
+    private InputAction player_tutorial_action;
+    private InputAction player_red_minus_action;
+    private InputAction player_red_plus_action;
+    private InputAction player_green_minus_action;
+    private InputAction player_green_plus_action;
+    private InputAction player_blue_minus_action;
+    private InputAction player_blue_plus_action;
+    private InputAction player_skip_action;
 
     private InputActionMap ui_map;
     private InputAction ui_navigate_action;
@@ -105,7 +120,7 @@ public class InputHandler : MonoBehaviour
     private InputAction ui_scrollwheel_action;
     private InputAction ui_trackeddeviceposition_action;
     private InputAction ui_trackeddeviceorientation_action;
-    private InputAction ui_r_action;
+    private InputAction ui_reset_action;
     #endregion
 
     // Public accessors for input states
@@ -122,7 +137,15 @@ public class InputHandler : MonoBehaviour
     public Vector2 player_scrollwheel_input { get; private set; }
     public bool player_decrease_triggered { get; private set; }
     public bool player_increase_triggered { get; private set; }
-    public bool player_r_triggered { get; private set; }
+    public bool player_reset_triggered { get; private set; }
+    public bool player_tutorial_triggered { get; private set; }
+    public bool player_red_minus_triggered { get; private set; }
+    public bool player_red_plus_triggered { get; private set; }
+    public bool player_green_minus_triggered { get; private set; }
+    public bool player_green_plus_triggered { get; private set; }
+    public bool player_blue_minus_triggered { get; private set; }
+    public bool player_blue_plus_triggered { get; private set; }
+    public bool player_skip_triggered { get; private set; }
 
     public Vector2 ui_navigation_input { get; private set; }
     public bool ui_submit_triggered { get; private set; }
@@ -135,7 +158,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 ui_scroll_wheel_input { get; private set; }
     public Vector3 ui_tracked_device_position_input { get; private set; }
     public Quaternion ui_tracked_device_orientation_input { get; private set; }
-    public bool ui_r_triggered { get; private set; }
+    public bool ui_reset_triggered { get; private set; }
     #endregion
 
     private void Awake()
@@ -160,7 +183,15 @@ public class InputHandler : MonoBehaviour
         player_scrollwheel_action = inputsystem_actions.FindActionMap(player).FindAction(player_scrollwheel);
         player_decrease_action = inputsystem_actions.FindActionMap(player).FindAction(player_decrease);
         player_increase_action = inputsystem_actions.FindActionMap(player).FindAction(player_increase);
-        player_r_action = inputsystem_actions.FindActionMap(player).FindAction(player_r);
+        player_reset_action = inputsystem_actions.FindActionMap(player).FindAction(player_reset);
+        player_tutorial_action = inputsystem_actions.FindActionMap(player).FindAction(player_tutorial);
+        player_red_minus_action = inputsystem_actions.FindActionMap(player).FindAction(player_red_minus);
+        player_red_plus_action = inputsystem_actions.FindActionMap(player).FindAction(player_red_plus);
+        player_green_minus_action = inputsystem_actions.FindActionMap(player).FindAction(player_green_minus);
+        player_green_plus_action = inputsystem_actions.FindActionMap(player).FindAction(player_green_plus);
+        player_blue_minus_action = inputsystem_actions.FindActionMap(player).FindAction(player_blue_minus);
+        player_blue_plus_action = inputsystem_actions.FindActionMap(player).FindAction(player_blue_plus);
+        player_skip_action = inputsystem_actions.FindActionMap(player).FindAction(player_skip);
         #endregion
 
         // ui actions
@@ -177,7 +208,7 @@ public class InputHandler : MonoBehaviour
         ui_scrollwheel_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_scrollwheel);
         ui_trackeddeviceposition_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_trackeddeviceposition);
         ui_trackeddeviceorientation_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_trackeddeviceorientation);
-        ui_r_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_r);
+        ui_reset_action = inputsystem_actions.FindActionMap(ui).FindAction(ui_reset);
         #endregion
 
         RegisterInputActions();
@@ -223,8 +254,32 @@ public class InputHandler : MonoBehaviour
         player_increase_action.performed += context => player_increase_triggered = true;
         player_increase_action.canceled += context => player_increase_triggered = false;
 
-        player_r_action.performed += context => player_r_triggered = true;
-        player_r_action.canceled += context => player_r_triggered = false;
+        player_reset_action.performed += context => player_reset_triggered = true;
+        player_reset_action.canceled += context => player_reset_triggered = false;
+
+        player_tutorial_action.performed += context => player_tutorial_triggered = true;
+        player_tutorial_action.canceled += context => player_tutorial_triggered = false;
+
+        player_red_minus_action.performed += context => player_red_minus_triggered = true;
+        player_red_minus_action.canceled += context => player_red_minus_triggered = false;
+
+        player_red_plus_action.performed += context => player_red_plus_triggered = true;
+        player_red_plus_action.canceled += context => player_red_plus_triggered = false;
+
+        player_green_minus_action.performed += context => player_green_minus_triggered = true;
+        player_green_minus_action.canceled += context => player_green_minus_triggered = false;
+
+        player_green_plus_action.performed += context => player_green_plus_triggered = true;
+        player_green_plus_action.canceled += context => player_green_plus_triggered = false;
+
+        player_blue_minus_action.performed += context => player_blue_minus_triggered = true;
+        player_blue_minus_action.canceled += context => player_blue_minus_triggered = false;
+
+        player_blue_plus_action.performed += context => player_blue_plus_triggered = true;
+        player_blue_plus_action.canceled += context => player_blue_plus_triggered = false;
+
+        player_skip_action.performed += context => player_skip_triggered = true;
+        player_skip_action.canceled += context => player_skip_triggered = false;
 
         #endregion
 
@@ -263,8 +318,8 @@ public class InputHandler : MonoBehaviour
         ui_trackeddeviceorientation_action.performed += context => ui_tracked_device_orientation_input = context.ReadValue<Quaternion>();
         ui_trackeddeviceorientation_action.canceled += context => ui_tracked_device_orientation_input = Quaternion.Euler(Vector3.zero);
 
-        ui_r_action.performed += context => ui_r_triggered = true;
-        ui_r_action.canceled += context => ui_r_triggered = false;
+        ui_reset_action.performed += context => ui_reset_triggered = true;
+        ui_reset_action.canceled += context => ui_reset_triggered = false;
 
         #endregion
     }
